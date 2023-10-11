@@ -1,0 +1,17 @@
+**README for the Hono Web Application**
+
+This is a web application built using the Hono framework. It utilizes the GitHub API to retrieve repository contents and tree structures, as well as a third-party API for natural language processing.\n\nThe application has four main routes:
+
+1. `/summarize_codebase` - This route takes a user and a repository and returns a summary of the codebase using natural language processing.
+2. `/file_summary` - This route takes a user, repository, and filepath, then returns a summary of the specified file using natural language processing.
+3. `/list_files` - This route takes a user and repository and returns a list of files and folders in the repository.
+4. `/get_tree` - This route takes a user and repository and returns the tree structure of the repository.
+The application also includes a helper function `isProgrammingFile` that checks if a file is a programming file based on its extension.
+
+The main components of the codebase are:
+1. The `Hono` framework for building the web application.
+2. The `getRepoContents` function from the `githubApiHandler` module, which retrieves the contents of a repository from the GitHub API.
+3. The `getTreeContents` function from the `githubTreeHandler` module, which retrieves the tree structure of a repository from the GitHub API
+4. The `getLlmResponses` function from the `perplexityApiHandler` module, which uses natural language processing to generate a summary of a codebase.
+
+Overall, the codebase is well-structured and follows best practices for web development with the Hono framework. The use of helper functions and modules makes the code more modular and easier to maintain.

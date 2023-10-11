@@ -22,13 +22,12 @@ export async function interactWithLlm(message, systemMessage = 'Be precise and c
         "authorization": `Bearer ${api_key}`
     };
     const payload = {
-        "model": "mistral-7b-instruct",
+        "model": process.env.MODEL,
         "messages": [
             { "role": "system", "content": systemMessage },
             { "role": "user", "content": message }
         ]
     };
     const response = await fetch(API_BASE, { method: 'POST', body: JSON.stringify(payload), headers });
-    if (!response.ok) throw new Error('Failed to interact with LLM');
     return await response.json();
 }

@@ -17,6 +17,17 @@ app.get('/summarize_codebase', async (c) => {
     return c.json(llm_dict);
 });
 
+app.get('/readme_ify', async (c) => {
+    const user = c.req.query('user');
+    const repo = c.req.query('repo');
+
+    const tree = await getTreeContents(user, repo, TOKEN);
+    const repo_dict = await traverseRepo(tree, user, repo, TOKEN);
+    const llm_dict = await getLlmResponses(repo_dict);
+    const readme = await interactWithLlm("Use the following descriptions to create a README.md:" + JSON.stringify(llm_dict), systemMessage = "Only write in markdown. Do not use \n");
+    return c.json(readme);
+});
+
 app.get('/file_summary', async (c) => {
     const user = c.req.query('user');
     const repo = c.req.query('repo');
