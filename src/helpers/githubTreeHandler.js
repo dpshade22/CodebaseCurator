@@ -22,8 +22,7 @@ export async function getTreeContents(user, repo, token = '') {
 
 export function isProgrammingFile(file_name) {
   const extension = file_name.slice(file_name.lastIndexOf('.'));
-  const filename = file_name.slice(0, file_name.lastIndexOf('.'));
-  return PROGRAMMING_EXTENSIONS.includes(extension) || PROGRAMMING_EXTENSIONS.includes(filename);
+  return PROGRAMMING_EXTENSIONS.includes(extension) || PROGRAMMING_EXTENSIONS.includes(file_name);
 }
 
 export function decodeContent(file_contents) {

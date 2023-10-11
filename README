@@ -1,17 +1,22 @@
-**README for the Hono Web Application**
+# README.md for CodeLLAMA
 
-This is a web application built using the Hono framework. It utilizes the GitHub API to retrieve repository contents and tree structures, as well as a third-party API for natural language processing.\n\nThe application has four main routes:
+This repository contains the source code for the CodeLLAMA project, which is a web application that uses the Hono framework to interact with GitHub repositories and retrieve information about them. The application exposes several endpoints for interacting with GitHub repositories, including:
 
-1. `/summarize_codebase` - This route takes a user and a repository and returns a summary of the codebase using natural language processing.
-2. `/file_summary` - This route takes a user, repository, and filepath, then returns a summary of the specified file using natural language processing.
-3. `/list_files` - This route takes a user and repository and returns a list of files and folders in the repository.
-4. `/get_tree` - This route takes a user and repository and returns the tree structure of the repository.
-The application also includes a helper function `isProgrammingFile` that checks if a file is a programming file based on its extension.
+* `/summarize_codebase`: Returns a summary of the codebase for a given GitHub repository. The summary includes information about the repository's size, commit history, and the number of files and folders.
+* `/readme_ify`: Returns a README.md file for a given GitHub repository. The README.md file is generated using the Perplexity API and is created based on the repository's commit history and file structure.
+* `/file_summary`: Returns a summary of a specific file in a GitHub repository. The summary includes information about the file's contents and the number of lines of code.
+* `/list_files`: Returns a list of all the files in a GitHub repository. The list includes the names of the files, their extensions, and the folders in which they are located.
+* `/get_tree`: Returns the contents of a folder in a GitHub repository. The contents include the names of the files and subfolders, as well as the folder names and their parent folders.
 
-The main components of the codebase are:
-1. The `Hono` framework for building the web application.
-2. The `getRepoContents` function from the `githubApiHandler` module, which retrieves the contents of a repository from the GitHub API.
-3. The `getTreeContents` function from the `githubTreeHandler` module, which retrieves the tree structure of a repository from the GitHub API
-4. The `getLlmResponses` function from the `perplexityApiHandler` module, which uses natural language processing to generate a summary of a codebase.
+The application also defines a `route` variable that is used to store the current endpoint being accessed. This variable is used to determine which endpoint the user is currently accessing.
 
-Overall, the codebase is well-structured and follows best practices for web development with the Hono framework. The use of helper functions and modules makes the code more modular and easier to maintain.
+The application uses the Hono framework to handle HTTP requests and responses, and it interacts with the GitHub API to retrieve information about the repositories. The application also uses the Perplexity API to generate the README.md files.
+
+The source code is organized into several files, including:
+
+* `src/helpers/githubApiHandler.js`: Defines an asynchronous function called `getRepoContents` that uses the `fetch` API to retrieve the contents of a repository from GitHub.
+* `src/helpers/githubTreeHandler.js`: Defines a function called `getLatestCommitSha` that retrieves the latest commit SHA for a given repository, and a function called `getTreeContents` that retrieves the tree for a given repository and commit SHA.
+* `src/helpers/perplexityApiHandler.js`: Defines a function called `getLlmResponses` that uses the Perplexity API to generate responses for a given repository.
+* `src/index.js`: Defines the web application using the Hono framework, and maps the endpoints to the corresponding functions.
+
+Overall, this project demonstrates how to interact with the GitHub API and the Perplexity API using JavaScript, and how to build a web application using the Hono framework
